@@ -2,7 +2,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncSession, AsyncAttrs, async_sessionmaker, create_async_engine
 import os
 from dotenv import load_dotenv
-from sqlalchemy import BigInteger, Date, Time, ForeignKey, String, Boolean
+from sqlalchemy import BigInteger, Date, Time, ForeignKey, String, Boolean, ARRAY
 import asyncpg
 import psycopg2
 import asyncio
@@ -27,8 +27,8 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_name: Mapped[str] = mapped_column(String(20))
-    tg_id = mapped_column(BigInteger, unique=True)
-    company: Mapped[str] = mapped_column(String(20))
+    tg_id: Mapped[int] = mapped_column(BigInteger, unique=True)
+    company: Mapped[list[str]] = mapped_column(ARRAY(String(20)))
 
 
 async def async_main():
