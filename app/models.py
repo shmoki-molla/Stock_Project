@@ -7,8 +7,6 @@ import asyncpg
 import psycopg2
 import asyncio
 
-
-
 load_dotenv()
 
 connection_string = f"postgresql+asyncpg://{os.environ.get("USER")}:{os.environ.get("PASSWORD")}@{os.environ.get("HOST")}:{os.environ.get("PORT")}/{os.environ.get("DB_NAME")}"

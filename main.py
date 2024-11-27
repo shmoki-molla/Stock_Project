@@ -41,8 +41,6 @@ async def spam(bot: Bot):
             continue
 
 
-
-
 async def main():
     await async_main()
     load_dotenv()
@@ -60,8 +58,7 @@ async def main():
 if __name__ == '__main__':
     asyncio.run(main())
 
-#TODO
+# TODO
 # 1) Функция удаления компании
 # 2) Вывод графиков по нажатию кнопки
 # 3) Отображение дат в датафрейме и графиках
-

@@ -3,6 +3,7 @@ from app.models import User
 from sqlalchemy import select, update, delete, text
 import pandas as pd
 from sqlalchemy.dialects.postgresql import array
+from sqlalchemy.sql import func
 
 
 async def set_user(tg_id: int, user_name: str) -> None:
@@ -31,12 +32,14 @@ async def get_prices(table_name):
 
         return df
 
+
 async def get_companies():
     async with async_session() as session:
         query = text("SELECT company FROM companies")
         result = await session.execute(query)
         companies = result.fetchall()
         return companies
+
 
 async def add_company_to_user(tg_id, new_company):
     async with async_session() as session:
@@ -56,6 +59,7 @@ async def add_company_to_user(tg_id, new_company):
             else:
                 pass
 
+
 async def get_companies_from_user(tg_id):
     async with async_session() as session:
         result = await session.execute(select(User.company).where(User.tg_id == tg_id))
@@ -63,4 +67,18 @@ async def get_companies_from_user(tg_id):
         return user_company
 
 
+async def get_plots(tg_id):
+    async with async_session() as session:
+        pass
 
+
+async def delete_company(tg_id, company_name):
+    async with async_session() as session:
+        async with session.begin():
+            stmt = (
+                update(User)
+                .where(User.tg_id == tg_id)
+                .values(company=(func.array_remove(User.company, company_name)))
+            )
+            await session.execute(stmt)
+    return f'Компания {company_name} успешно удалена'
