@@ -16,6 +16,29 @@ async def start(message: Message):
     await rq.set_user(message.from_user.id, message.from_user.full_name)
     await message.answer(f'Привет, {message.from_user.username}', reply_markup=kb.main)
 
+@router.message(Command('link'))
+async def link(message: Message):
+    git_link = 'https://github.com/shmoki-molla/Stock_Project.git'
+    tg_link = 'https://t.me/shmoki_molla'
+    await message.answer(f'GitHub: {git_link}\nTelegram: {tg_link}')
+
+@router.message(Command('help'))
+async def help(message: Message):
+    help_text = '''
+    Итак, вы хотите узнать, как работает этот телеграм-бот
+У вас всегда есть 3 основные кнопки вместо клавиатуры
+1) Выбрать компанию:
+    Здесь вы можете выбрать компании, которые вас интересуют.
+    Вам ежедневно будут высылаться графики изменения стоимости акций этих компаний за последние 100 дней
+2) Отслеживаемые компании:
+    Тут вы можете посмотреть, какие компании добавили в свой список. 
+    Их можно удалить или посмотреть графики, не дожидаясь рассылки, нажав на соответствующую кнопку под сообщением
+3) Где я?:
+    Ну с этим и так все понятно)
+    P.S. Если вы нажмете на добавление одной и той же компании дважды, то на самом деле она не добавится второй раз, не переживайте
+    '''
+    await message.answer(f'{help_text}')
+
 
 @router.message((F.text == 'Выбрать компанию'))
 async def add_company(message: Message, state: FSMContext):
@@ -48,8 +71,8 @@ async def show_companies(message: Message):
 @router.message((F.text == 'Где я?'))
 async def helper(message: Message):
     help_text = '''
-    Нажми на "Выбрать компанию", чтобы отметить интересующие тебя компании
-    Ежедневно тебе будут высылаться графики изменения акций этих компаний за последние 100 дней!
+    Это Трейдер-Бот, который будет каждый день делиться с тобой свежими данными об акциях крупных компаний! 
+Если хочешь узнать больше - пропиши /help
     '''
     await message.answer(help_text)
 
