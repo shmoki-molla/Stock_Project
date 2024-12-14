@@ -1,66 +1,65 @@
-# 📈 Telegram Bot for Stock Monitoring
+# 📈 Telegram-бот для отслеживания акций
 
-A Telegram bot built using `aiogram` that allows users to track stock prices of major companies. The bot integrates with [Alpha Vantage](https://www.alphavantage.co/) to fetch stock data, stores the information in a PostgreSQL database, and provides users with daily updates, including stock price charts generated with `matplotlib`.
-
----
-
-## 🛠 Features
-
-1. **User Registration**  
-   - Users can register via the bot and manage their profile.
-   
-2. **Company Selection**  
-   - Users can select the companies they are interested in tracking from a predefined list of major companies.
-
-3. **Daily Stock Updates**  
-   - The bot sends daily stock price charts for the selected companies directly to users.
-
-4. **Dynamic Chart Generation**  
-   - Generates daily stock price charts using `matplotlib` with data fetched from PostgreSQL.
-
-5. **Automated Data Collection**  
-   - An `Airflow DAG` periodically fetches stock price data from Alpha Vantage and loads it into a PostgreSQL database.
+Telegram-бот, созданный с использованием `aiogram`, который позволяет пользователям отслеживать цены на акции крупных компаний. Бот интегрируется с [Alpha Vantage](https://www.alphavantage.co/) для получения данных об акциях, хранит информацию в базе данных PostgreSQL и предоставляет пользователям ежедневные обновления, включая графики цен на акции, сгенерированные с помощью `matplotlib`.
 
 ---
 
-## 🚀 How It Works
+## 🛠 Функциональность
 
-1. **Data Pipeline**  
-   - An Airflow DAG collects data from the Alpha Vantage API and updates the PostgreSQL database.
+1.  **Регистрация пользователей**
+    - Пользователи могут зарегистрироваться через бота и управлять своим профилем.
 
-2. **Telegram Bot**  
-   - The bot uses `aiogram` for handling user interactions.
-   - Users can select and manage their preferred companies via simple commands.
+2.  **Выбор компаний**
+    - Пользователи могут выбрать компании, за которыми они хотят следить, из предопределенного списка крупных компаний.
 
-3. **Chart Generation**  
-   - The bot queries the database for stock data and generates charts using `matplotlib`.
-   - These charts are sent daily to users via Telegram.
+3.  **Ежедневные обновления акций**
+    - Бот отправляет ежедневные графики цен на акции выбранных компаний непосредственно пользователям.
 
----
+4.  **Динамическое построение графиков**
+    - Генерирует ежедневные графики цен на акции с использованием `matplotlib` с данными, полученными из PostgreSQL.
 
-## 🧩 Tech Stack
-
-- **Programming Language:** Python  
-- **Telegram Bot Framework:** [aiogram](https://docs.aiogram.dev/)  
-- **Task Scheduler:** [Apache Airflow](https://airflow.apache.org/)  
-- **Database:** PostgreSQL  
-- **Charting Library:** matplotlib  
-- **API for Stock Data:** [Alpha Vantage](https://www.alphavantage.co/)  
+5.  **Автоматизированный сбор данных**
+    - `Airflow DAG` периодически получает данные о ценах на акции из Alpha Vantage и загружает их в базу данных PostgreSQL.
 
 ---
 
-## 📚 Installation & Setup
+## 🚀 Как это работает
 
-### Prerequisites
-1. Python 3.8 or higher.
-2. PostgreSQL database.
-3. Airflow installed and configured.
+1.  **Конвейер данных**
+    - Airflow DAG собирает данные из API Alpha Vantage и обновляет базу данных PostgreSQL.
 
-### Steps
+2.  **Telegram-бот**
+    - Бот использует `aiogram` для обработки взаимодействия с пользователем.
+    - Пользователи могут выбирать и управлять своими предпочтительными компаниями с помощью простых команд.
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/shmoki-molla/Stock_Project.git
-   cd Stock_Project
+3.  **Генерация графиков**
+    - Бот запрашивает данные об акциях из базы данных и генерирует графики с использованием `matplotlib`.
+    - Эти графики ежедневно отправляются пользователям через Telegram.
 
-   
+---
+
+## 🧩 Технологический стек
+
+-   **Язык программирования:** Python
+-   **Фреймворк для Telegram-бота:** [aiogram](https://docs.aiogram.dev/)
+-   **Планировщик задач:** [Apache Airflow](https://airflow.apache.org/)
+-   **База данных:** PostgreSQL
+-   **Библиотека для построения графиков:** matplotlib
+-   **API для данных об акциях:** [Alpha Vantage](https://www.alphavantage.co/)
+
+---
+
+## 📚 Установка и настройка
+
+### Необходимые условия
+1.  Python 3.8 или выше.
+2.  База данных PostgreSQL.
+3.  Установленный и настроенный Airflow.
+
+### Шаги
+
+1.  **Клонируйте репозиторий:**
+    ```bash
+    git clone https://github.com/shmoki-molla/Stock_Project.git
+    cd Stock_Project
+    ```
